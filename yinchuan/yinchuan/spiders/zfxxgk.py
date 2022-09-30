@@ -28,6 +28,7 @@ class ZfxxgkSpider(scrapy.Spider):
         item['column'] = self.column
         item['sub_column'] = response.xpath('//div[@class="zfxxgk_zdgktit"]/a/text()').extract_first()
         lists = response.xpath('//div[@class="zfxxgk_zdgkc"]/ul/li')
+        count = 0
         for l in lists:
             #分三个子栏目 文件通知、人事任免、预决算公开
             item['title'] = l.xpath('./a/@title').get()
@@ -41,4 +42,7 @@ class ZfxxgkSpider(scrapy.Spider):
             #print(item['column'])
             
             yield item
+            count += 1
+            if(count % 10) == 0:
+                break
 

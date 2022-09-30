@@ -35,5 +35,4 @@ CREATE TABLE `articles`  (
   `title` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标题',
   `href` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '链接',
   `release_date` datetime NULL DEFAULT NULL COMMENT '发布日期'
-  
   );

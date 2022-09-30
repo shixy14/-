@@ -26,15 +26,21 @@ class ZqzlSpider(scrapy.Spider):
         item['column'] = self.column
         titles = response.xpath('//div[@class="larightnav"]/a/text()').extract()
         item['sub_column'] = titles[2]
-
+        count = 0
         lists = response.xpath('//div[@class = "larightcon"]/ul/li')
         for l in lists:
+            
+            
+            
             item['title'] = l.xpath('./a/@title').get()
             item['href'] = l.xpath('./a/@href').get()
             if item['href'][0] == '.':
                 item['href'] = response.url + item['href'][2:]
-            item['date'] = l.xpath('./span/text()').get().replace('\n','').strip()        
-
+            item['date'] = l.xpath('./span/text()').get().replace('\n','').strip()     
             yield item
+            count += 1   
+            if(count % 5) == 0:
+                break
+            
 
         
